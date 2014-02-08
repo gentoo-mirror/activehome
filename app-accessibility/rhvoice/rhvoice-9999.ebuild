@@ -4,12 +4,12 @@
 
 EAPI="5"
 
-inherit scons-utils eutils toolchain-funcs multilib git-2
+inherit scons-utils eutils toolchain-funcs multilib git-r3
 
 DESCRIPTION="A speech synthesizer for Russian language"
 HOMEPAGE="https://github.com/Olga-Yakovleva/RHVoice"
 SRC_URI=""
-EGIT_REPO_URI="git://github.com/Olga-Yakovleva/RHVoice.git"
+EGIT_REPO_URI="https://github.com/Olga-Yakovleva/RHVoice git://github.com/Olga-Yakovleva/RHVoice.git"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -27,7 +27,7 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
 	use rewrite && EGIT_BRANCH="rewrite"
-	git-2_src_unpack;
+	git-r3_src_unpack;
 }
 
 src_compile() {
