@@ -1,0 +1,13 @@
+_eclasses_=toolchain-funcs	42408102d713fbad60ca21349865edb4	python	3a270b7b1d1e679847ff0faeac25c5a3	multilib	62927b3db3a589b0806255f3a002d5d3	autotools-utils	dbce0f7913bd240fdf0ef428149855c0	libtool	52d0e17251d04645ffaa61bfdd858944	autotools	2264f05fbbbaaf83d34ec81e72b38ffd	eutils	9fb270e417e0e83d64ca52586c4a79de
+_md5_=18a516a1083593de4f795f86755c3fdb
+SLOT=0
+DEFINED_PHASES=compile configure install prepare test
+EAPI=3
+DEPEND=lapack? ( virtual/lapack ) doc? ( >=app-doc/doxygen-1.4.7 ) python? ( || ( =dev-lang/python-2.7* =dev-lang/python-2.6* ) )
+DESCRIPTION=Support library required by the Sphinx Speech Recognition Engine
+LICENSE=BSD as-is
+IUSE=doc lapack python static-libs
+SRC_URI=mirror://sourceforge/cmusphinx/sphinxbase-0.8.tar.gz
+KEYWORDS=~amd64 ~x86
+HOMEPAGE=http://cmusphinx.sourceforge.net/
+RDEPEND=lapack? ( virtual/lapack ) python? ( || ( =dev-lang/python-2.7* =dev-lang/python-2.6* ) )
