@@ -1,0 +1,7 @@
+app-accessibility/cmuclmtk 0.7: Support library required by the Sphinx Speech Recognition Engine
+app-accessibility/julius 4.2.2: High-performance, two-pass large vocabulary continuous speech recognition
+app-accessibility/pocketsphinx 0.8: Support library required by the Sphinx Speech Recognition Engine
+app-accessibility/rhvoice 9999: A speech synthesizer for Russian language
+app-accessibility/sphinx3 0.8: CMU Speech Recognition engine
+app-accessibility/sphinxbase 0.8: Support library required by the Sphinx Speech Recognition Engine
+app-accessibility/sphinxtrain 1.0.8: Support library required by the Sphinx Speech Recognition Engine
