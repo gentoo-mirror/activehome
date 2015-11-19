@@ -7,5 +7,5 @@ IUSE=rewrite
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-3
 SLOT=0
-_eclasses_=eutils	f813d23e417656bf3917483643165d5a	git-r3	1502b9838d043db47700b8120083e637	multilib	3972ca401cf7dbb430df9995f5d8d580	scons-utils	b7d634f772db55c8af429f50aeec6ee0	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
+_eclasses_=eutils	f813d23e417656bf3917483643165d5a	git-r3	b00a846f415f26e5b66e5c44c7dc87dc	multilib	3972ca401cf7dbb430df9995f5d8d580	scons-utils	b7d634f772db55c8af429f50aeec6ee0	toolchain-funcs	7a212e5e01adfa4805c9978366e6ee85
 _md5_=555a9666324a3de4526580ce6d5d12d6
