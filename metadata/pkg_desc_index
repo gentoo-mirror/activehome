@@ -1,0 +1,10 @@
+app-accessibility/cmuclmtk 0.7: Support library required by the Sphinx Speech Recognition Engine
+app-accessibility/julius 4.2.2: High-performance, two-pass large vocabulary continuous speech recognition
+app-accessibility/pocketsphinx 0.8: Support library required by the Sphinx Speech Recognition Engine
+app-accessibility/rhvoice 9999: A speech synthesizer for Russian language
+app-accessibility/sphinx3 0.8: CMU Speech Recognition engine
+app-accessibility/sphinxbase 0.8: Support library required by the Sphinx Speech Recognition Engine
+app-accessibility/sphinxtrain 1.0.8: Support library required by the Sphinx Speech Recognition Engine
+dev-embedded/lm4tools 9999: provides lm4flash and lmicdiusb for developing on the TI Stellaris Launchpad
+dev-embedded/openocd 9999: OpenOCD - Open On-Chip Debugger
+media-gfx/sweethome3d-bin 5.2: Sweet Home 3D is a free interior design application.
