@@ -1,0 +1,69 @@
+--- a/bin/pico2wave.c	2017-06-03 00:40:35.618459894 +0700
++++ b/bin/pico2wave.c	2017-06-03 01:17:42.060099975 +0700
+@@ -83,7 +83,7 @@
+
+ 	struct poptOption optionsTable[] = {
+ 		{ "wave", 'w', POPT_ARG_STRING, &wavefile, 0,
+-		  "Write output to this WAV file (extension SHOULD be .wav)", "filename.wav" },
++		  "Write output (WAV) to this file instead of stdout", "filename.wav" },
+ 		{ "lang", 'l', POPT_ARG_STRING | POPT_ARGFLAG_SHOW_DEFAULT, &lang, 0,
+ 		  "Language", "lang" },
+ 		POPT_AUTOHELP
+@@ -103,12 +103,12 @@
+ 		}
+ 	}
+
+-    /* Mandatory option: --wave */
+-	if(!wavefile) {
+-		fprintf(stderr, "Mandatory option: %s\n\n", 
+-			"--wave=filename.wav");
+-		poptPrintHelp(optCon, stderr, 0);
+-		exit(1);
++	if((!wavefile) || (strcmp(wavefile, (char *) "-") == 0)) {
++		wavefile = (char *) "/dev/stdout"; // directly /proc/self/fd/1 ?
++	}
++	if(strlen(wavefile)==0) {
++		fprintf(stderr, "It is impossible to write in the file with empty name\n");
++		exit(1);
+ 	}
+ 	/* option: --lang */
+ 	for(langIndexTmp =0; langIndexTmp<picoNumSupportedVocs; langIndexTmp++) {
+@@ -135,12 +131,14 @@
+     if(extra_argv) {
+ 		text = (char *) &(*extra_argv)[0];
+     } else {
+-        //TODO: stdin not supported yet.
+-		fprintf(stderr, "Missing argument: %s\n\n", 
+-			"<words>");
+-		poptPrintHelp(optCon, stderr, 0);
+-		exit(1);
++		short err;
++		size_t len;
++		err = getdelim(&text, &len, EOF, stdin);
++		if (-1 == err) {
++			fprintf(stderr, "Failed to read text either from stdin or cmdline arguments\n");
++			exit(1);
++		}
+     }
+
+     poptFreeContext(optCon);
+
+--- a/lib/picoos.c	2017-06-03 00:31:10.487658265 +0700
++++ b/lib/picoos.c	2017-06-03 01:21:10.057477739 +0700
+@@ -1749,16 +1749,11 @@
+         sdf->bufPos = 0;
+         sdf->aborted = FALSE;
+         if (picoos_CreateBinary(g, &(sdf->file), fileName)) {
+-            if (picoos_has_extension(fileName, (picoos_char *) ".wav")) {
+                 sdf->fileType = FILE_TYPE_WAV;
+                 done = picoos_writeWavHeader(sdf->file, sdf->sf, sdf->enc,
+                         DummyLen, &(sdf->hdrSize));
+-            } else {
+                 /* we prefer not to treat other formats, rather than treat it as raw */
+                 /* fileType = FILE_TYPE_RAW; */
+-                sdf->fileType = FILE_TYPE_OTHER;
+-                done = FALSE;
+-            }
+
+             if (FILE_TYPE_OTHER == sdf->fileType) {
+                 picoos_emRaiseWarning(g->em, PICO_EXC_UNEXPECTED_FILE_TYPE,
