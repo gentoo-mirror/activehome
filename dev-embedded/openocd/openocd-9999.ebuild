@@ -1,11 +1,11 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI="5"
+EAPI=6
 
 inherit eutils multilib flag-o-matic toolchain-funcs udev autotools git-r3
-EGIT_REPO_URI="git://git.code.sf.net/p/${PN}/code"
+EGIT_REPO_URI="https://git.code.sf.net/p/${PN}/code"
+EGIT_SUBMODULES=("-*libjaylink" "-jimtcl")
 
 DESCRIPTION="OpenOCD - Open On-Chip Debugger"
 HOMEPAGE="http://openocd.sourceforge.net"
@@ -17,6 +17,7 @@ RESTRICT="strip" # includes non-native binaries
 
 RDEPEND="
 	>=dev-lang/jimtcl-0.76
+	>=dev-embedded/libjaylink-0.1.0
 	cmsis-dap? ( dev-libs/hidapi )
 	usb? (
 		virtual/libusb:0
@@ -32,7 +33,8 @@ DEPEND="
 "
 
 src_prepare() {
-	epatch_user
+	default
+
 	AT_NO_RECURSIVE=yes eautoreconf
 }
 
@@ -42,6 +44,7 @@ src_configure() {
 		--enable-buspirate
 		--disable-werror
 		--disable-internal-jimtcl
+		--disable-internal-libjaylink
 		--enable-amtjtagaccel
 		--enable-ep93xx
 		--enable-at91rm9200
