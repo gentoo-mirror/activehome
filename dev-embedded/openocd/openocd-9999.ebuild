@@ -12,13 +12,13 @@ HOMEPAGE="http://openocd.sourceforge.net"
 
 LICENSE="GPL-2+"
 SLOT="0"
-IUSE="cmsis-dap dummy ftdi parport +usb verbose-io"
+IUSE="+cmsis-dap dummy +ftdi +jlink parport +usb verbose-io"
 RESTRICT="strip" # includes non-native binaries
 
 RDEPEND="
 	>=dev-lang/jimtcl-0.76
-	>=dev-embedded/libjaylink-0.1.0
 	cmsis-dap? ( dev-libs/hidapi )
+	jlink? ( >=dev-embedded/libjaylink-0.1.0 )
 	usb? (
 		virtual/libusb:0
 		virtual/libusb:1
@@ -49,7 +49,6 @@ src_configure() {
 		--enable-ep93xx
 		--enable-at91rm9200
 		--enable-gw16012
-		--enable-oocd_trace
 		--enable-arm-jtag-ew
 		--enable-sysfsgpio
 		--enable-bcm2835gpio
@@ -66,7 +65,6 @@ src_configure() {
 			--enable-osbdm
 			--enable-opendous
 			--enable-usbprog
-			--enable-jlink
 			--enable-rlink
 			--enable-stlink
 			--enable-vsllink
@@ -92,17 +90,27 @@ src_configure() {
 		)
 	fi
 
-	if use ftdi; then
+	if use jlink; then
 		myconf+=(
-			--enable-usb_blaster_libftdi
-			--enable-openjtag_ftdi
-			--enable-presto_libftdi
+			--enable-jlink
 		)
 	else
 		myconf+=(
-			--disable-openjtag_ftdi
-			--disable-presto_libftdi
-			--disable-usb_blaster_libftdi
+			--disable-jlink
+		)
+	fi
+
+	if use ftdi; then
+		myconf+=(
+			--enable-usb_blaster
+			--enable-openjtag
+			--enable-presto
+		)
+	else
+		myconf+=(
+			--disable-openjtag
+			--disable-presto
+			--disable-usb_blaster
 		)
 	fi
 
@@ -119,4 +127,8 @@ src_install() {
 	default
 	env -uRESTRICT prepstrip "${ED}"/usr/bin
 	udev_dorules ${D}/usr/share/${PN}/contrib/*.rules
+}
+
+pkg_postinst() {
+    elog "To access openocd devices as user you must be in the plugdev group"
 }
