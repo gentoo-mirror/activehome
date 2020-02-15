@@ -1,9 +1,7 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
-# This ebuild is a modified version of ebuild from java overlay.
 
-EAPI="6"
+EAPI=6
 inherit eutils
 
 MY_PN="SweetHome3D"
@@ -15,7 +13,7 @@ SRC_URI="
 	x86? ( mirror://sourceforge/sweethome3d/${MY_PN}-${PV}-linux-x86.tgz )
 "
 LICENSE="GPL-3"
-IUSE="+system-java"
+IUSE="gtk3 +system-java"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
@@ -29,8 +27,10 @@ RDEPEND="
 
 S="${WORKDIR}/${MY_PN}-${PV}"
 
+QA_PREBUILT="*java3d.*.so"
+
 pkg_setup() {
-	if use system-java && [ ! -f "$JAVA_HOME"/bin/java]; then
+	if use system-java && [ ! -f "$JAVA_HOME"/bin/java ]; then
 		die 'Your Java VM installation is broken. Please, select proper system vm through eselect.'
 	fi
 }
@@ -41,15 +41,22 @@ src_prepare() {
 		rm -rf jre*
 		sed -r \
 			-e 's@^(exec.*/bin/java)@exec "$JAVA_HOME"/bin/java@' \
-			-e 's@:"\$PROGRAM_DIR"/[^/]*/(lib/javaws.jar) @:"$JAVA_HOME"/jre/\1:"$JAVA_HOME"/\1 @' \
-			-i SweetHome3D
+			-e 's@:"\$PROGRAM_DIR"/[^/]*/(lib/javaws.jar) @:"$JAVA_HOME"/jre/\1:"$JAVA_HOME"/\1:/usr/share/icedtea-web/netx.jar @' \
+			-i "${MY_PN}"
+	fi
+	if use gtk3; then
+		sed -r \
+			-e '/^exec.*java /s@(bin/java)@\1 -Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Dsun.java2d.xrender=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel@' \
+			-i "${MY_PN}"
 	fi
 	default
 }
 
 src_install() {
-	dodir /usr/share/sweethome3d
-	cp -r "${S}"/* "${D}"/usr/share/sweethome3d/
-	dosym /usr/share/sweethome3d/"${MY_PN}" /usr/bin/"${MY_PN}"
+	insinto /usr/share/"${PF}"
+	exeinto /usr/share/"${PF}"
+	doins -r *
+	doexe "${MY_PN}"
+	dosym /usr/share/${PF}/"${MY_PN}" /usr/bin/"${MY_PN}"
 	make_desktop_entry "${MY_PN}" "${MY_PN}"
 }

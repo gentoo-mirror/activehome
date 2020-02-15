@@ -1,14 +1,13 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header $
 
-EAPI=4
+EAPI=7
 
-EGIT_REPO_URI=" https://github.com/utzig/lm4tools.git"
+EGIT_REPO_URI="https://github.com/utzig/lm4tools.git"
 
-inherit eutils toolchain-funcs git-2
+inherit eutils toolchain-funcs git-r3
 
-DESCRIPTION="provides lm4flash and lmicdiusb for developing on the TI Stellaris Launchpad"
+DESCRIPTION="Provides lm4flash and lmicdiusb for developing on the TI Stellaris Launchpad"
 HOMEPAGE="https://github.com/utzig/lm4tools"
 
 LICENSE="GPL-2+ MIT"
@@ -21,6 +20,7 @@ DEPEND="${RDEPEND}
 
 src_prepare () {
 	sed -e "s:gcc:$(tc-getCC):" -i lm4flash/Makefile || die
+	default
 }
 
 src_compile () {
