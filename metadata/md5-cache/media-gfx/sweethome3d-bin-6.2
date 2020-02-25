@@ -1,0 +1,13 @@
+DEFINED_PHASES=install prepare setup
+DEPEND=system-java? ( app-eselect/eselect-java )
+DESCRIPTION=Sweet Home 3D is a free interior design application.
+EAPI=7
+HOMEPAGE=http://sweethome3d.com/
+IUSE=gtk3 +system-java
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3
+RDEPEND=system-java? ( virtual/jre:* )
+SLOT=0
+SRC_URI=amd64? ( mirror://sourceforge/sweethome3d/SweetHome3D-6.2-linux-x64.tgz ) x86? ( mirror://sourceforge/sweethome3d/SweetHome3D-6.2-linux-x86.tgz )
+_eclasses_=eutils	fcb2aa98e1948b835b5ae66ca52868c5
+_md5_=364005fb33714a1601cb6ba799ccdffb

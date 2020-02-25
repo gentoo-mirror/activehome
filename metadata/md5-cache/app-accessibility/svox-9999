@@ -1,11 +1,10 @@
+BDEPEND=>=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 >=dev-vcs/git-1.8.2.1[curl]
 DEFINED_PHASES=prepare unpack
-DEPEND=>=app-portage/elt-patches-20170815 || ( >=sys-devel/automake-1.16.1:1.16 >=sys-devel/automake-1.15.1:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 >=dev-vcs/git-1.8.2.1[curl]
 DESCRIPTION=SVOX PicoTTS text-to-speech engine
-EAPI=6
+EAPI=7
 HOMEPAGE=https://android.googlesource.com/platform/external/svox/+/master
-IUSE=+pipe
 LICENSE=Apache-2.0
 PROPERTIES=live
 SLOT=0
 _eclasses_=autotools	ea7865c8fba1ea8d3639f355fffe1a3c	git-r3	86a0188f2ad9eb3d65e4d031ab8a0422	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	1d91b03d42ab6308b5f4f6b598ed110e	toolchain-funcs	512eb3367f507ebaa1d1d43ab7d66e6c
-_md5_=660a89c03dfbfc04adb5029c487cc698
+_md5_=657bec2e299a98b6e0b2adfc0fdf5df7
