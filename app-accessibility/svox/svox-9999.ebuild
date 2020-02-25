@@ -1,7 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit autotools git-r3
 
@@ -12,18 +12,15 @@ HOMEPAGE="https://android.googlesource.com/platform/external/svox/+/master"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS=""
-IUSE="+pipe"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-PATCHES=("${FILESDIR}/patches")
+PATCHES=("${FILESDIR}/patches/conditional/pipe.patch")
 
 S="${WORKDIR}/${P}/pico"
 
 src_prepare() {
-	use pipe && PATCHES+=("${FILESDIR}/patches/conditional/pipe.patch")
 	default
 	eautoreconf
 }

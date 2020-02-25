@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -20,7 +20,6 @@ KEYWORDS="~amd64 ~x86"
 DEPEND="
 	system-java? ( app-eselect/eselect-java )
 "
-
 RDEPEND="
 	system-java? ( virtual/jre:* )
 "
@@ -57,6 +56,6 @@ src_install() {
 	exeinto /usr/share/"${PF}"
 	doins -r *
 	doexe "${MY_PN}"
-	dosym /usr/share/${PF}/"${MY_PN}" /usr/bin/"${MY_PN}"
+	dosym ../../usr/share/"${PF}"/"${MY_PN}" /usr/bin/"${MY_PN}"
 	make_desktop_entry "${MY_PN}" "${MY_PN}"
 }

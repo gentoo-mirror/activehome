@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -12,7 +12,6 @@ HOMEPAGE="https://github.com/utzig/lm4tools"
 
 LICENSE="GPL-2+ MIT"
 SLOT="0"
-IUSE=""
 
 RDEPEND="virtual/libusb:1"
 DEPEND="${RDEPEND}
