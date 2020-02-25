@@ -1,21 +1,19 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit scons-utils eutils toolchain-funcs multilib git-r3
+inherit python-any-r1 scons-utils eutils toolchain-funcs multilib git-r3
 
 DESCRIPTION="A speech synthesizer for Russian (and similar) language"
 HOMEPAGE="https://github.com/Olga-Yakovleva/RHVoice"
 EGIT_REPO_URI="https://github.com/Olga-Yakovleva/RHVoice"
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 
 RDEPEND=""
 DEPEND="
 	${RDEPEND}
-	dev-lang/python
 	app-accessibility/flite
 	dev-libs/libunistring
 	dev-libs/expat
@@ -29,12 +27,12 @@ DOCS=(README)
 # TODO: multilib support (just in case)
 
 src_compile() {
-	escons prefix=/usr sysconfdir=/etc libdir=/usr/$(get_libdir)
+	escons prefix=/usr sysconfdir=/etc libdir=/usr/"$(get_libdir)"
 }
 
 src_install() {
 	# Dirty hack, since it fails to install with multijob
 	SCONSOPTS=""
-	escons DESTDIR="${D}" prefix=/usr sysconfdir=/etc libdir=/usr/$(get_libdir) install
+	escons DESTDIR="${D}" prefix=/usr sysconfdir=/etc libdir=/usr/"$(get_libdir)" install
 	einstalldocs
 }
