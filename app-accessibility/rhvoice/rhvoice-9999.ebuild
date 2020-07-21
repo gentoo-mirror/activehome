@@ -3,7 +3,11 @@
 
 EAPI=7
 
+PYTHON_COMPAT=(python3_{6,7,8,9})
+
 inherit python-any-r1 scons-utils eutils toolchain-funcs multilib git-r3
+
+SRC_URI=""
 
 DESCRIPTION="A speech synthesizer for Russian (and similar) language"
 HOMEPAGE="https://github.com/Olga-Yakovleva/RHVoice"
@@ -22,17 +26,16 @@ DEPEND="
 	dev-util/scons
 "
 
-DOCS=(README)
+DOCS=(README.md NEWS doc)
 
 # TODO: multilib support (just in case)
 
 src_compile() {
-	escons prefix=/usr sysconfdir=/etc libdir=/usr/"$(get_libdir)"
+	escons DESTDIR="${D}" prefix=/usr sysconfdir=/etc libdir="/usr/$(get_libdir)"
 }
 
 src_install() {
-	# Dirty hack, since it fails to install with multijob
-	SCONSOPTS=""
-	escons DESTDIR="${D}" prefix=/usr sysconfdir=/etc libdir=/usr/"$(get_libdir)" install
+	escons DESTDIR="${D}" prefix=/usr sysconfdir=/etc libdir="/usr/$(get_libdir)" install
 	einstalldocs
+	dosym "/usr/bin/sd_${PN}" "/usr/$(get_libdir)/speech-dispatcher-modules/sd_${PN}"
 }
