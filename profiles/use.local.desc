@@ -2,5 +2,11 @@
 # Please add your descriptions to your package's metadata.xml ONLY.
 # * generated automatically using pmaint *
 
+app-accessibility/rhvoice:client - Build client app
+app-accessibility/rhvoice:data - Use data
+app-accessibility/rhvoice:mage - Use mage
+app-accessibility/rhvoice:server - Build server app
+app-accessibility/rhvoice:speech-dispatcher - Use speech-dispatcher
+app-accessibility/rhvoice:testapp - Build testapp
+app-accessibility/rhvoice:utils - Build utils
 media-gfx/sweethome3d-bin:gtk3 - Use GTK3 interface bindings
-media-gfx/sweethome3d-bin:system-java - Don't use bundled JRE packages
