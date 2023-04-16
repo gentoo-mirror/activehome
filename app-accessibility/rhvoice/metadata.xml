@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>mva@gentoo.org</email>
+    <name>Vadim Misbakh-Soloviov</name>
+  </maintainer>
+  <use>
+    <flag name='client'>Build client app</flag>
+    <flag name='data'>Use data</flag>
+    <flag name='mage'>Use mage</flag>
+    <flag name='server'>Build server app</flag>
+    <flag name='speech-dispatcher'>Use speech-dispatcher</flag>
+    <flag name='testapp'>Build testapp</flag>
+    <flag name='utils'>Build utils</flag>
+  </use>
+  <upstream>
+    <remote-id type="github">Olga-Yakovleva/RHVoice</remote-id>
+  </upstream>
+</pkgmetadata>
