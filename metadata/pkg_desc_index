@@ -1,3 +1,4 @@
 app-accessibility/rhvoice 9999: A speech synthesizer for Russian (and similar) language
 app-accessibility/svox 9999: SVOX PicoTTS text-to-speech engine
-media-gfx/sweethome3d-bin 7.1: Sweet Home 3D is a free interior design application.
+dev-embedded/lm4tools 9999: Provides lm4flash and lmicdiusb for developing on the TI Stellaris Launchpad
+media-gfx/sweethome3d-bin 7.2: Sweet Home 3D is a free interior design application.
